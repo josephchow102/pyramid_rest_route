@@ -21,7 +21,7 @@ classifiers = [
 
 setup(
       name='pyramid_rest_route',
-      version='0.1',
+      version='0.2',
       packages=find_packages(),
       description='Simple helper for creating rest route and view',
       classifiers=classifiers,
