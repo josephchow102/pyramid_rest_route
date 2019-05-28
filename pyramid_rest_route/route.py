@@ -50,13 +50,13 @@ def add_rest_route(config, name, plural, cls, factory=PublicFactory,
     config.add_route('new_%s' % name, '/%s/new' % url_name,
         factory=factory)
     config.add_route('formatted_edit_%s' % name,
-        '/%s/{id}/edit.{ext}' % url_name, factory=factory)
+        '/%s/{id}/edit.{ext}' % url_name, traverse='/{id}', factory=factory)
     config.add_route('edit_%s' % name, '/%s/{id}/edit' % url_name,
-        factory=factory)
+        traverse='/{id}', factory=factory)
     config.add_route('formatted_%s' % name,
-        '/%s/{id}.{ext}' % url_name, factory=factory)
+        '/%s/{id}.{ext}' % url_name, traverse='/{id}', factory=factory)
     config.add_route('%s' % name, '/%s/{id}' % url_name,
-        factory=factory)
+        traverse='/{id}', factory=factory)
 
     if include_view:
         config.add_view(cls, route_name=plural, permission='view',
@@ -96,10 +96,10 @@ def add_rest_route(config, name, plural, cls, factory=PublicFactory,
         route_name = '%s_%s' % (member, name)
         config.add_route(route_name,
             '/%s/{id}/%s' % (url_name, member),
-            factory=factory)
+            traverse='/{id}', factory=factory)
         config.add_route('formatted_%s' % route_name,
             '/%s/{id}/%s.{ext}' % (url_name, member),
-            factory=factory)
+            traverse='/{id}', factory=factory)
 
         if include_view:
             config.add_view(cls, route_name=route_name,
